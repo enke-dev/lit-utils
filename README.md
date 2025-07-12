@@ -1,4 +1,6 @@
-# Lit Utils
+[![test and build](https://github.com/enke-dev/lit-utils/actions/workflows/main.yml/badge.svg)](https://github.com/enke-dev/lit-utils/actions/workflows/main.yml)
+
+# Lit utils
 
 A collection of utilities, directives and converters for working with Lit, a library for building web components.
 
