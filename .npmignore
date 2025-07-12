@@ -1,0 +1,10 @@
+.github
+.prettierrc
+public
+src
+eslint.config.js
+index.html
+junit.xml
+jest.*
+tsconfig.*
+vite.config.ts

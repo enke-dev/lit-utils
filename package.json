@@ -1,0 +1,60 @@
+{
+  "name": "@enke.dev/lit-utils",
+  "version": "0.0.0",
+  "license": "MIT",
+  "description": "Custom utils, converters amd directives for the lit library.",
+  "author": {
+    "name": "David Enke",
+    "email": "david@enke.dev"
+  },
+  "files": [
+    "lib"
+  ],
+  "keywords": [],
+  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint",
+    "test": "cross-env NODE_OPTIONS=\"--experimental-vm-modules\" NODE_NO_WARNINGS=1 jest",
+    "build": "tsc --project tsconfig.build.json"
+  },
+  "peerDependencies": {
+    "@lit-labs/router": "^0.1.4",
+    "lit": "^3.3.1",
+    "urlpattern-polyfill": "^10.1.0"
+  },
+  "devDependencies": {
+    "@enke.dev/lint": "0.6.4",
+    "@esm-bundle/chai": "4.3.4-fix.0",
+    "@open-wc/semantic-dom-diff": "0.20.1",
+    "@open-wc/testing": "4.0.0",
+    "@open-wc/testing-helpers": "3.0.1",
+    "@tsconfig/strictest": "2.0.5",
+    "@types/mocha": "10.0.10",
+    "@types/node": "22.16.3",
+    "cross-env": "7.0.3",
+    "eslint": "9.30.1",
+    "eslint-formatter-junit": "8.40.0",
+    "jest": "30.0.4",
+    "jest-environment-jsdom": "30.0.4",
+    "jest-junit": "16.0.0",
+    "jiti": "2.4.2",
+    "npm-run-all": "4.1.5",
+    "playwright-chromium": "1.54.1",
+    "prettier": "3.6.2",
+    "ts-jest": "29.4.0",
+    "ts-node": "10.9.2",
+    "typescript": "5.8.3"
+  },
+  "bugs": "https://github.com/enke-dev/lit-utils/issues",
+  "homepage": "https://enke-dev.github.io/lit-utils",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enke-dev/lit-utils.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

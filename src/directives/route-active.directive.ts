@@ -1,0 +1,92 @@
+import { noChange } from 'lit';
+import {
+  AsyncDirective,
+  directive,
+  ElementPart,
+  Part,
+  PartInfo,
+  PartType,
+} from 'lit/async-directive.js';
+
+/**
+ * Reactive directive to check for the current route being active.
+ * Can be used directly on an element to toggle a css class or with a boolean attribute or property.
+ */
+class RouteActiveDirective extends AsyncDirective {
+  // use the location path as default - this should
+  // may be retrieved from the router somehow...
+  #currentPath = window.location.pathname;
+  #route?: string;
+  #isRouteActive = false;
+
+  readonly #element?: Element;
+
+  #matchRoute(): boolean {
+    if (this.#route === undefined) return false;
+
+    // pattern matching using a URLPattern
+    const route = new URLPattern(this.#route, window.location.origin);
+    const url = new URL(this.#currentPath, window.location.origin);
+
+    return route.test(url);
+  }
+
+  // looks like we're using it only to derive types?
+  render(_route: string, _toggleClass?: string) {
+    return noChange;
+  }
+
+  override update(part: Part, [route, toggleClass = 'active']: [string, string | undefined]) {
+    this.#route = route;
+    this.#currentPath = window.location.pathname;
+
+    const isRouteActive = this.#matchRoute();
+    const hasRouteChanged = isRouteActive !== this.#isRouteActive;
+
+    if (part.type === PartType.ELEMENT && this.#element !== undefined && this.isConnected) {
+      this.#element.classList.toggle(toggleClass, isRouteActive);
+    }
+
+    if (hasRouteChanged) {
+      this.#isRouteActive = isRouteActive;
+      return this.#isRouteActive;
+    }
+
+    return noChange;
+  }
+
+  constructor(partInfo: PartInfo) {
+    super(partInfo);
+
+    // check usage
+    if (
+      partInfo.type !== PartType.PROPERTY &&
+      partInfo.type !== PartType.BOOLEAN_ATTRIBUTE &&
+      partInfo.type !== PartType.ELEMENT
+    ) {
+      throw new Error(
+        'The `routerActive` directive must be used with a boolean result attribute / property, or directly on the element itself to toggle a class.',
+      );
+    }
+
+    // store a reference to the element
+    if (partInfo.type === PartType.ELEMENT) {
+      this.#element = (partInfo as ElementPart).element;
+    }
+  }
+}
+
+/**
+ * Checks for given route to be active. Updates when the route changes.
+ *
+ * @example
+ * ```html
+ * <a href="/home" ${routeActive('/home', 'active')}>Home</a>
+ * ```
+ *
+ * @example
+ * ```html
+ * <button href="/home" ?disabled="${routeActive('/home')}">Home</button>
+ * ```
+ */
+export const routeActive = directive(RouteActiveDirective);
