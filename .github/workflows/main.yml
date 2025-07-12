@@ -35,7 +35,7 @@ jobs:
       - uses: mikepenz/action-junit-report@v4
         if: success() || failure()
         with:
-          check_name: report
+          check_name: Report
           include_passed: true
           report_paths: reports/*.junit.xml
 
