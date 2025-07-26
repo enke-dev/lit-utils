@@ -1,4 +1,4 @@
-# Astro Decap Collection
+# @enke.dev/lit-utils
 
 ## [0.0.4](https://github.com/enke-dev/lit-utils/compare/0.0.3...0.0.4) (2025-07-26)
 

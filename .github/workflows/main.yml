@@ -20,6 +20,7 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     env:
       ESLINT_JUNIT_OUTPUT_FILE: reports/lint.junit.xml
       JEST_JUNIT_OUTPUT_FILE: reports/test.junit.xml
@@ -29,7 +30,9 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: npm
+          cache-dependency-path: package-lock.json
       - run: npm ci
+      - run: npm run docs:build:readmes
       - run: npm run lint -- --format junit --output-file ${ESLINT_JUNIT_OUTPUT_FILE}
       - run: npm run test -- --ci --reporters=default --reporters=jest-junit
       - uses: mikepenz/action-junit-report@v4
@@ -43,56 +46,61 @@ jobs:
     name: Build
     needs: test
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
           cache: npm
+          cache-dependency-path: package-lock.json
       - run: npm ci
       - run: npm run build
+      - run: npm run docs
       - if: success() && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         uses: actions/upload-artifact@v4
         with:
           name: latest-lib
           path: lib
-      # - if: success() && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: latest-dist
-      #     path: dist
+      - if: success() && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: latest-docs
+          path: docs/.vitepress/dist
 
-  # deploy:
-  #.  name: Deploy
-  #   if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   environment:
-  #     name: github-pages
-  #     url: ${{ steps.deployment.outputs.page_url }}
-  #   permissions:
-  #     contents: read
-  #     pages: write
-  #     id-token: write
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - uses: actions/configure-pages@v4
-  #     - uses: actions/download-artifact@v4
-  #       with:
-  #         name: latest-dist
-  #         path: dist
-  #     - uses: actions/upload-pages-artifact@v3
-  #       with:
-  #         path: dist
-  #     - name: Deploy to GitHub Pages
-  #       id: deployment
-  #       uses: actions/deploy-pages@v4
+  deploy:
+    name: Deploy
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: latest-docs
+          path: docs/.vitepress/dist
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/.vitepress/dist
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 
   release:
     name: Release
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     permissions:
       contents: write
       id-token: write
@@ -107,6 +115,7 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: npm
+          cache-dependency-path: package-lock.json
           registry-url: https://registry.npmjs.org/
       - uses: actions/download-artifact@v4
         with:
@@ -116,7 +125,7 @@ jobs:
       - run: |
           git config user.email "${{ vars.NPM_EMAIL }}"
           git config user.name "${{ vars.NPM_USER }}"
-          npm config set //registry.npmjs.org/:_authToken ${{secrets.NPM_TOKEN}}
+          npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
           npm install --global release-it @release-it/conventional-changelog
 
       - run: |
@@ -128,7 +137,7 @@ jobs:
             --git.commitMessage='chore: release v${version}' \
             --git.pushArgs=--follow-tags \
             --plugins.@release-it/conventional-changelog.infile=CHANGELOG.md \
-            --plugins.@release-it/conventional-changelog.header='# Astro Decap Collection' \
+            --plugins.@release-it/conventional-changelog.header='# @enke.dev/lit-utils' \
             --plugins.@release-it/conventional-changelog.preset=angular
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
