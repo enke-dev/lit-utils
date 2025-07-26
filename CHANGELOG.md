@@ -1,5 +1,12 @@
 # @enke.dev/lit-utils
 
+## [0.0.7](https://github.com/enke-dev/lit-utils/compare/0.0.6...0.0.7) (2025-07-26)
+
+
+### Bug Fixes
+
+* **docs:** set explicit base path ([8b94e0f](https://github.com/enke-dev/lit-utils/commit/8b94e0fcce8095685a350ad3bf4eafb0445c3e15))
+
 ## [0.0.6](https://github.com/enke-dev/lit-utils/compare/0.0.5...0.0.6) (2025-07-26)
 
 
