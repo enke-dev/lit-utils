@@ -56,7 +56,8 @@ jobs:
           cache-dependency-path: package-lock.json
       - run: npm ci
       - run: npm run build
-      - run: npm run docs
+      - run: npm run docs:build:readmes
+      - run: npm run docs:build:website -- --base /lit-utils/
       - if: success() && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         uses: actions/upload-artifact@v4
         with:
