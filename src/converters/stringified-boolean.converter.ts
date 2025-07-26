@@ -35,17 +35,3 @@ export const StringifiedBooleanConverter: ConverterFactory<boolean, [string?, st
     return value ? trueValue : falseValue;
   },
 });
-
-/**
- * Converts an iso date attribute to a `Date` object.
- * The `short` parameter can be used to convert the date to a short iso date string (cp. `datetime` attribute).
- */
-export const DateIsoConverter: ConverterFactory<Date | undefined, [boolean]> = (short = true) => ({
-  fromAttribute: value => {
-    return value ? new Date(value) : undefined;
-  },
-  toAttribute: value => {
-    if (value && short) return shortDate(value);
-    return value?.toISOString();
-  },
-});
