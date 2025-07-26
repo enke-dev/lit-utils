@@ -1,5 +1,12 @@
 # @enke.dev/lit-utils
 
+## [0.0.6](https://github.com/enke-dev/lit-utils/compare/0.0.5...0.0.6) (2025-07-26)
+
+
+### Bug Fixes
+
+* **docs:** relative base path ([6a1b0ab](https://github.com/enke-dev/lit-utils/commit/6a1b0abb05396d4e7ccf7b9d91a29537b02f2633))
+
 ## [0.0.5](https://github.com/enke-dev/lit-utils/compare/0.0.4...0.0.5) (2025-07-26)
 
 ## [0.0.4](https://github.com/enke-dev/lit-utils/compare/0.0.3...0.0.4) (2025-07-26)
