@@ -25,5 +25,8 @@ export default defineConfig({
     })),
     socialLinks: [{ icon: 'github', link: 'https://github.com/enke-dev/lit-utils' }],
   },
-  vite: { plugins: [SearchPlugin()] },
+  vite: {
+    base: './',
+    plugins: [SearchPlugin()],
+  },
 });
