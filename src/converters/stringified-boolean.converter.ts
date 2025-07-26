@@ -1,5 +1,4 @@
 import type { ConverterFactory } from '../types/converter.types.js';
-import { shortDate } from '../utils/date.utils.js';
 
 /**
  * Converts a boolean property to a stringified representation.
