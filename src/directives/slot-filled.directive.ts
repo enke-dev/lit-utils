@@ -35,6 +35,10 @@ class SlotFilledDirective extends AsyncDirective {
     this.#element?.removeEventListener('slotchange', this.#listener, true);
   }
 
+  /**
+   * @param _attr - The attribute to set on the host element when the slot has elements assigned.
+   * @param _slotName - The name of the slot to check. If not provided, all slots will be checked.
+   */
   override render(_attr?: string, _slotName?: string) {
     return nothing;
   }
@@ -66,6 +70,8 @@ class SlotFilledDirective extends AsyncDirective {
  * Note that the `:empty` pseudo-class is not meant to target slots, as these have not direct children, but rather their assigned elements.
  *
  * Are multiple slots present, all of them may be checked. To limit the check to a specific slot, provide an optional slot name.
+ *
+ * @returns A directive that can be used in a template.
  *
  * @example
  * ```html

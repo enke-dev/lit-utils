@@ -5,7 +5,7 @@ import type { ConverterFactory } from '../types/converter.types.js';
  * For example setting boolean WAI-ARIA attributes, which are usually set to `true` or `false` as string, can not be used as boolean attributes directly in Lit.
  * To handle this, you can use the `StringifiedBooleanConverter` provided by this package, which allows you to map a boolean value to its string representation.
  *
- * @link https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-expanded#values
+ * @see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-expanded#values
  *
  * @param trueValue - The string representation for `true` (default: 'true').
  * @param falseValue - The string representation for `false` (default: 'false').

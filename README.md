@@ -4,7 +4,7 @@
 
 A collection of utilities, directives and converters for working with Lit, a library for building web components.
 
-The detailed documentation for now is inline in jsdocs. So just have a look at the source code.
+For a detailed documentation visit https://enke-dev.github.io/lit-utils/.
 
 ## Installation
 

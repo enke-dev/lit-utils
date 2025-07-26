@@ -5,5 +5,6 @@
     "moduleResolution": "bundler",
     "target": "ESNext"
   },
+  "include": ["**/*.ts", "./docs/.vitepress/config.ts"],
   "exclude": ["lib"]
 }

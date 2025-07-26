@@ -2,7 +2,7 @@
   "name": "@enke.dev/lit-utils",
   "version": "0.0.4",
   "license": "MIT",
-  "description": "Custom utils, converters amd directives for the lit library.",
+  "description": "Custom utils, converters and directives for the lit library.",
   "author": {
     "name": "David Enke",
     "email": "david@enke.dev"
@@ -18,7 +18,13 @@
   "scripts": {
     "lint": "eslint",
     "test": "cross-env NODE_OPTIONS=\"--experimental-vm-modules\" NODE_NO_WARNINGS=1 jest",
-    "build": "tsc --project tsconfig.build.json"
+    "build": "tsc --project tsconfig.build.json",
+    "docs:dev:readmes": "typedoc --watch",
+    "docs:dev:website": "vitepress dev docs",
+    "docs:dev": "run-p -ns docs:dev:*",
+    "docs:build:readmes": "typedoc",
+    "docs:build:website": "vitepress build docs",
+    "docs": "run-s docs:build:*"
   },
   "peerDependencies": {
     "@lit-labs/router": "^0.1.4",
@@ -37,6 +43,7 @@
     "cross-env": "7.0.3",
     "eslint": "9.31.0",
     "eslint-formatter-junit": "8.40.0",
+    "flexsearch": "0.7.43",
     "jest": "30.0.4",
     "jest-environment-jsdom": "30.0.4",
     "jest-junit": "16.0.0",
@@ -46,7 +53,12 @@
     "prettier": "3.6.2",
     "ts-jest": "29.4.0",
     "ts-node": "10.9.2",
-    "typescript": "5.8.3"
+    "typedoc": "0.28.7",
+    "typedoc-plugin-markdown": "4.7.1",
+    "typedoc-vitepress-theme": "1.1.2",
+    "typescript": "5.8.3",
+    "vitepress": "1.6.3",
+    "vitepress-plugin-search": "1.0.4-alpha.22"
   },
   "bugs": "https://github.com/enke-dev/lit-utils/issues",
   "homepage": "https://enke-dev.github.io/lit-utils",
