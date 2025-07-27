@@ -9,6 +9,7 @@ import type { ConverterFactory } from '../types/converter.types.js';
  *
  * @example
  * ```typescript
+ * @customElement('my-component')
  * class MyComponent extends LitElement {
  *   @property({
  *     type: Array,
@@ -18,6 +19,9 @@ import type { ConverterFactory } from '../types/converter.types.js';
  *   })
  *   units = ['px', 'em', 'rem'];
  * }
+ * ```
+ * ```html
+ * <my-component units="px em rem"></my-component>
  * ```
  */
 export const ListConverter: ConverterFactory<

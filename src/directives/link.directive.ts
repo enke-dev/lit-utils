@@ -4,7 +4,10 @@ import { AsyncDirective, directive } from 'lit/async-directive.js';
 
 import { goto } from '../utils/router.utils.js';
 
-class LinkDirective extends AsyncDirective {
+/**
+ * @private
+ */
+export class LinkDirective extends AsyncDirective {
   #element: Element | undefined;
   #link: string | undefined;
   #role: string | undefined;

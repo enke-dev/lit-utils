@@ -2,7 +2,10 @@ import type { ElementPart } from 'lit';
 import { nothing } from 'lit';
 import { AsyncDirective, directive } from 'lit/async-directive.js';
 
-class SlotFilledDirective extends AsyncDirective {
+/**
+ * @private
+ */
+export class SlotFilledDirective extends AsyncDirective {
   #element: Element | undefined;
   #attr: string | undefined;
   #slotName: string | undefined;
@@ -74,6 +77,8 @@ class SlotFilledDirective extends AsyncDirective {
  * @returns A directive that can be used in a template.
  *
  * @example
+ * Sets the `data-has-elements` attribute on the footer element if the slot has elements assigned to it.
+ *
  * ```html
  * <footer ${slotFilled('data-has-elements')}>
  *   <slot name="footer"></slot>
@@ -81,6 +86,8 @@ class SlotFilledDirective extends AsyncDirective {
  * ```
  *
  * @example
+ * Sets the `data-has-social-links` attribute on the footer element if the `social` slot has elements assigned to it.
+ *
  * ```html
  * <footer ${slotFilled('data-has-social-links', 'social')}>
  *   <slot name="meta"></slot>

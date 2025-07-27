@@ -2,6 +2,16 @@ import type { ReactiveElement } from 'lit';
 
 /**
  * Convenient interface to implement form-associated custom elements.
+ * @see https://web.dev/articles/more-capable-form-controls
+ * @example
+ * ```ts
+ * @customElement('text-input')
+ * export class TextInputElement
+ *   extends LitElement
+ *   implements FormAssociated<string> {}
+ *   ...
+ * }
+ * ```
  */
 export interface FormAssociated<T> {
   disabled?: boolean;
@@ -24,11 +34,47 @@ export interface FormAssociated<T> {
 
 /**
  * Naive application or creation of form data to a given object.
+ * Updates (or creates) an object from the data of the given form.
  *
- * Updates (or creates) a user object from the data of the given form.
  * @param form form element to read data from
- * @param existing eventually existing user object to update
- * @returns the updated / created user object
+ * @param existing eventually existing data object to update
+ * @returns the updated / created data object
+ *
+ * @example
+ * Read data from form as an object.
+ *
+ * ```html
+ * <form>
+ *   <input name="name" value="John">
+ *   <input name="age" value="30">
+ * </form>
+ * ```
+ * ```ts
+ * const form = document.querySelector('form');
+ * const data = applyFromFormData(form);
+ * console.log(data);
+ * ```
+ * ```
+ * { name: 'John', age: '30' }
+ * ```
+ *
+ * @example
+ * Update existing data object with form data.
+ *
+ * ```html
+ * <form>
+ *   <input name="name" value="John">
+ *   <input name="age" value="30">
+ * </form>
+ * ```
+ * ```ts
+ * const existing = { gender: 'male', name: 'Peter' };
+ * const updated = applyFromFormData(form, existing);
+ * console.log(updated);
+ * ```
+ * ```
+ * { gender: 'male', name: 'John', age: '30' }
+ * ```
  */
 export function applyFromFormData<T extends object>(
   form: HTMLFormElement,
@@ -42,10 +88,13 @@ export function applyFromFormData<T extends object>(
 }
 
 /**
- * Borrowed from `@material/web/internal/controller/form-submitter.js`.
- * @see https://github.com/material-components/material-web/blob/main/internal/controller/form-submitter.ts
+ * @private
  */
 export type FormSubmitterType = 'button' | 'submit' | 'reset';
+
+/**
+ * @private
+ */
 export interface FormSubmitter extends ReactiveElement {
   readonly internals: ElementInternals;
   type: FormSubmitterType;
@@ -53,7 +102,12 @@ export interface FormSubmitter extends ReactiveElement {
   value: string;
 }
 
-type FormSubmitterConstructor = (new () => FormSubmitter) | (abstract new () => FormSubmitter);
+/**
+ * @private
+ */
+export type FormSubmitterConstructor =
+  | (new () => FormSubmitter)
+  | (abstract new () => FormSubmitter);
 
 /**
  * Sets up a form submitter to handle form submission events.
@@ -61,7 +115,32 @@ type FormSubmitterConstructor = (new () => FormSubmitter) | (abstract new () => 
  * This function adds an event listener to the submitter that handles click events,
  * processes the form submission, and sets the submitter value in the form internals.
  *
+ * Borrowed from {@link https://github.com/material-components/material-web/blob/main/internal/controller/form-submitter.ts#L82 | Material Web }.
+ *
  * @param ctor The constructor of the form submitter element.
+ *
+ * @example
+ * {@link FormAssociated | Form aware} custom button element.
+ *
+ * ```ts
+ * @customElement('form-button')
+ * export class Button extends LitElement {
+ *   // make the element form aware
+ *   static readonly formAssociated = true;
+ *
+ *   // a static initialization block that executes when the class is
+ *   // first loaded, rather than when instances are created (an ES2022
+ *   // feature, but the Typescript compiler will handle that)
+ *   static {
+ *     setupFormSubmitter(Button);
+ *   }
+ *
+ *   // the element internals, which is required for form association
+ *   readonly internals = this.attachInternals() as unknown as ElementInternals;
+ *
+ *   // ...
+ * }
+ * ```
  */
 export function setupFormSubmitter(ctor: FormSubmitterConstructor) {
   (ctor as unknown as typeof ReactiveElement).addInitializer(instance => {

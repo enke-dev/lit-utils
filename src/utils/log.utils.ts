@@ -1,3 +1,16 @@
+/**
+ * A custom console wrapper class to provide convenience methods for logging.
+ * It also ships with a {@link Console.f | static formatting template method} to format messages.
+ *
+ * @todo allow setting a log level to filter messages
+ *
+ * @example
+ * Using the format method to create a formatted message:
+ *
+ * ```ts
+ * console.log(Console.f`This is a message with a <code>formatted</code> part.`);
+ * ```
+ */
 export class Console {
   static f(raw: TemplateStringsArray, ...values: unknown[]): string[] {
     const reset = 'all: unset';
@@ -44,15 +57,15 @@ export class Console {
 }
 
 /**
- * A wrapper for the console to provide some convenience methods.
+ * A {@link Console | wrapper for the console} to provide some convenience methods.\
  * Just import it, and the global usages are replaced with this wrapper.
  *
- * Or just use the formatting template method `f` to format messages:
+ * @implements {@link Console}
  *
+ * @example
  * ```ts
- * import { Console } from './utils/log.utils.js';
+ * import { console } from '@enke.dev/lit-utils/lib/utils/log.utils.js';
  *
- * console.log(Console.f`This is a message with a <code>formatted</code> part.`);
- * ```
+ * console.log('This message is logged using the custom console wrapper.');
  */
 export const console = new Console(window.console);

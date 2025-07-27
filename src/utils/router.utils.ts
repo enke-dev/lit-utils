@@ -4,12 +4,18 @@ import type { Routes } from '@lit-labs/router';
 import type { URLPattern } from 'urlpattern-polyfill';
 
 /**
- * Defines how to handle query parameters when navigating.
- * Can either be merged with existing query parameters or replace them entirely.
+ * @private
  */
 export type SearchParamsHandling = 'preserve' | 'replace';
 let searchParamsHandling: SearchParamsHandling = 'replace';
 
+/**
+ * Sets the strategy for handling search parameters when navigating.
+ *
+ * @param strategy Defines how to handle search parameters when navigating.
+ * - `replace`: replaces the current search parameters with the new ones.
+ * - `preserve`: merges the new search parameters with the existing ones.
+ */
 export function setSearchParamsHandling(strategy: SearchParamsHandling) {
   searchParamsHandling = strategy;
 }
@@ -76,7 +82,8 @@ export function matchRoute(
  *       <main>${this.#router.outlet()}</main>
  *     `;
  *   }
- *   ...
+ *
+ *   // ...
  * }
  * ```
  */
@@ -107,12 +114,28 @@ export function goto(path: string): void {
  * > the default action of the event.
  *
  * @example
+ * Redirect in a route guard:
+ *
+ * ```ts
+ * enter: () => {
+ *   if (new URL(location.href).searchParams.has('secret')) {
+ *     return redirect('/reveal-secret');
+ *   }
+ *   // ...
+ * }
+ * ```
+ *
+ * @example
+ * Redirect with query parameters:
+ *
  * ```ts
  * enter: () => {
  *   if (!isAuthenticated()) {
- *     return redirect('/login');
+ *     const { pathname, search, hash } = location;
+ *     const fromPath = `${pathname}${search}${hash}`;
+ *     return redirect('/login', fromPath);
  *   }
- *   ...
+ *   // ...
  * }
  * ```
  */
@@ -131,8 +154,21 @@ export function redirect(to: string, redirectQuery?: string, redirectParam = 're
   return false;
 }
 
-// our custom event to navigate to a new path
+/**
+ * Our custom event, triggered when navigated to a new path.
+ *
+ * @example
+ * ```ts
+ * window.addEventListener(ROUTER_NAVIGATE_EVENT, ({ detail }) => {
+ *   console.log('Navigated to:', detail.path);
+ * });
+ * ```
+ */
 export const ROUTER_NAVIGATE_EVENT = 'router:navigate' as const;
+
+/**
+ * @private
+ */
 export interface RouterNavigateEventPayload {
   path: string;
 }

@@ -9,10 +9,9 @@ import {
 } from 'lit/async-directive.js';
 
 /**
- * Reactive directive to check for the current route being active.
- * Can be used directly on an element to toggle a css class or with a boolean attribute or property.
+ * @private
  */
-class RouteActiveDirective extends AsyncDirective {
+export class RouteActiveDirective extends AsyncDirective {
   // use the location path as default - this should
   // may be retrieved from the router somehow...
   #currentPath = window.location.pathname;
@@ -77,14 +76,19 @@ class RouteActiveDirective extends AsyncDirective {
 }
 
 /**
- * Checks for given route to be active. Updates when the route changes.
+ * Reactive directive to check for the current route being active.
+ * Can be used directly on an element to toggle a css class or with a boolean attribute or property.
  *
  * @example
+ * Either toggle a CSS class on the element, ...
+ *
  * ```html
  * <a href="/home" ${routeActive('/home', 'active')}>Home</a>
  * ```
  *
  * @example
+ * Or set a boolean attribute or property with the result of the directive.
+ *
  * ```html
  * <button href="/home" ?disabled="${routeActive('/home')}">Home</button>
  * ```
