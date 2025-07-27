@@ -23,7 +23,12 @@ export default defineConfig({
           ? item.items.flatMap(subItem => subItem.items[0]?.items ?? [])
           : item.items,
     })),
-    socialLinks: [{ icon: 'github', link: 'https://github.com/enke-dev/lit-utils' }],
+    socialLinks: [
+      {
+        icon: 'github',
+        link: 'https://github.com/enke-dev/lit-utils#readme',
+      },
+    ],
   },
   vite: {
     plugins: [SearchPlugin()],
