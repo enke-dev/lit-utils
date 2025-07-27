@@ -3,6 +3,7 @@
   "tsconfig": "./tsconfig.typedoc.json",
   "entryPoints": ["./src"],
   "entryPointStrategy": "expand",
+  "exclude": ["**/*.spec.ts"],
   "out": "./docs/api",
   "docsRoot": "./docs",
   "disableSources": true,
