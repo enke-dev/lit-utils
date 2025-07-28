@@ -1,8 +1,22 @@
 import { expect } from '@open-wc/testing';
 
-import { getWeekNumber } from './date.utils.js';
+import { getWeekNumber, shortDate } from './date.utils.js';
 
 describe('date.utils', () => {
+  describe('shortDate', () => {
+    it('formats a date to "YYYY-MM-DD"', () => {
+      const date = new Date('2023-01-01');
+      const formattedDate = shortDate(date);
+      expect(formattedDate).to.equal('2023-01-01');
+    });
+
+    it('handles invalid dates gracefully', () => {
+      const date = new Date('invalid-date');
+      const formattedDate = shortDate(date);
+      expect(formattedDate).to.be.undefined;
+    });
+  });
+
   describe('getWeekNumber', () => {
     it('returns the correct week number for a given date', () => {
       const date = new Date('2023-01-01'); // This is a Sunday

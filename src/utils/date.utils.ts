@@ -2,6 +2,7 @@
  * Formats a given date to a short date string which is used e.g. in datetime element attributes.
  *
  * @param date The date to format. Defaults to the current date.
+ * @return A string in the format 'YYYY-MM-DD'.
  *
  * @example
  * ```ts
@@ -11,6 +12,7 @@
 export function shortDate(date = new Date()): string | undefined {
   const offset = date.getTimezoneOffset();
   date = new Date(date.getTime() - offset * 60 * 1000);
+  if (isNaN(date.getTime())) return undefined;
   return date.toISOString().split('T')[0];
 }
 
