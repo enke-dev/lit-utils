@@ -1,5 +1,17 @@
 # @enke.dev/lit-utils
 
+# [0.1.0](https://github.com/enke-dev/lit-utils/compare/0.0.8...0.1.0) (2025-07-28)
+
+
+### Bug Fixes
+
+* **date.utils:** handle invalid input for short dates properly ([a3dcf8d](https://github.com/enke-dev/lit-utils/commit/a3dcf8dd139a62f4c635e1c131994facd3edc848))
+
+
+### Features
+
+* **date.utils:** get week number ([9aae487](https://github.com/enke-dev/lit-utils/commit/9aae487e28fc6b1bf4fffa3966258c0360cda260))
+
 ## [0.0.8](https://github.com/enke-dev/lit-utils/compare/0.0.7...0.0.8) (2025-07-27)
 
 ## [0.0.7](https://github.com/enke-dev/lit-utils/compare/0.0.6...0.0.7) (2025-07-26)

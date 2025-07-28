@@ -1,6 +1,6 @@
 {
   "name": "@enke.dev/lit-utils",
-  "version": "0.0.8",
+  "version": "0.1.0",
   "license": "MIT",
   "description": "Custom utils, converters and directives for the lit library.",
   "author": {
