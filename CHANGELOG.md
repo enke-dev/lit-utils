@@ -1,5 +1,12 @@
 # @enke.dev/lit-utils
 
+# [0.2.0](https://github.com/enke-dev/lit-utils/compare/0.1.0...0.2.0) (2025-07-31)
+
+
+### Features
+
+* **form.utils:** allow intercepting form data ([d14e4a2](https://github.com/enke-dev/lit-utils/commit/d14e4a21528068e2e02773e1af9260fe25ac8579))
+
 # [0.1.0](https://github.com/enke-dev/lit-utils/compare/0.0.8...0.1.0) (2025-07-28)
 
 
