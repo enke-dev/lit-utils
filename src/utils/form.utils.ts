@@ -76,6 +76,24 @@ export interface FormAssociated<T> {
  * ```
  * { gender: 'male', name: 'John', age: '30' }
  * ```
+ *
+ * @example
+ * Manipulate form data before applying it.
+ *
+ * ```html
+ * <form>
+ *   <input name="name" value="John">
+ *   <input name="age" value="30">
+ * </form>
+ * ```
+ * ```ts
+ * const existing = { name: 'Peter', age: 25 };
+ * const updated = applyFromFormData(form, existing, (k, v) => k === 'age' ? parseInt(v as string, 10) : v);
+ * console.log(updated);
+ * ```
+ * ```
+ * { gender: 'male', name: 'John', age: 30 }
+ * ```
  */
 export function applyFromFormData<T extends object>(
   form: HTMLFormElement,
