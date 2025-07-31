@@ -38,6 +38,7 @@ export interface FormAssociated<T> {
  *
  * @param form form element to read data from
  * @param existing eventually existing data object to update
+ * @param intercept function to intercept and modify the key-value pairs before applying them
  * @returns the updated / created data object
  *
  * @example
@@ -79,10 +80,11 @@ export interface FormAssociated<T> {
 export function applyFromFormData<T extends object>(
   form: HTMLFormElement,
   existing = {} as T,
+  intercept: (key: string, value: FormDataEntryValue) => FormDataEntryValue = (_, v) => v,
 ): T | undefined {
   const data = new FormData(form);
   return Array.from(data.entries()).reduce(
-    (all, [name, value]) => ({ ...all, [name]: value }),
+    (all, [name, value]) => ({ ...all, [name]: intercept(name, value) }),
     existing,
   );
 }
