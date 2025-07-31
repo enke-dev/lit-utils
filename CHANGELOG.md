@@ -1,5 +1,12 @@
 # @enke.dev/lit-utils
 
+## [0.2.1](https://github.com/enke-dev/lit-utils/compare/0.2.0...0.2.1) (2025-07-31)
+
+
+### Bug Fixes
+
+* **form.utils:** set unknown return type ([1f751d2](https://github.com/enke-dev/lit-utils/commit/1f751d2c1342beeffb29069d02860caeae887878))
+
 # [0.2.0](https://github.com/enke-dev/lit-utils/compare/0.1.0...0.2.0) (2025-07-31)
 
 
