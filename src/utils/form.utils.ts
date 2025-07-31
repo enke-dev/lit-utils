@@ -80,7 +80,7 @@ export interface FormAssociated<T> {
 export function applyFromFormData<T extends object>(
   form: HTMLFormElement,
   existing = {} as T,
-  intercept: (key: string, value: FormDataEntryValue) => FormDataEntryValue = (_, v) => v,
+  intercept: (key: string, value: FormDataEntryValue) => unknown = (_, v) => v,
 ): T | undefined {
   const data = new FormData(form);
   return Array.from(data.entries()).reduce(
