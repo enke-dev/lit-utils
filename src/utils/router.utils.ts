@@ -25,7 +25,9 @@ export function setSearchParamsHandling(strategy: SearchParamsHandling) {
  */
 export function handleSearchParams(path: string, strategy = searchParamsHandling): string {
   // replace strategy does not need to do anything
-  if (strategy === 'replace') return path;
+  if (strategy === 'replace') {
+    return path;
+  }
 
   // merging search query parameters
   const params = new URLSearchParams(location.search);
@@ -43,7 +45,7 @@ export function matchRoute(currentPath: string, route: URLPattern): boolean;
 export function matchRoute(
   currentPath: string,
   route: string | URLPattern,
-  exact?: boolean,
+  exact?: boolean
 ): boolean {
   // string based matching
   if (typeof route === 'string') {

@@ -21,13 +21,15 @@ import { shortDate } from '../utils/date.utils.js';
  * ```
  */
 export const DateIsoConverter: ConverterFactory<Date | undefined, [boolean?]> = (
-  short = false,
+  short = false
 ) => ({
   fromAttribute: value => {
     return value ? new Date(value) : undefined;
   },
   toAttribute: value => {
-    if (value && short) return shortDate(value);
+    if (value && short) {
+      return shortDate(value);
+    }
     return value?.toISOString();
   },
 });

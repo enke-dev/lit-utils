@@ -14,7 +14,9 @@ export class LinkDirective extends AsyncDirective {
 
   // set the link to the element
   #updateLinkValue(element: Element | undefined) {
-    if (this.#link === undefined) return;
+    if (this.#link === undefined) {
+      return;
+    }
 
     // update the href attribute if the element is an anchor
     if (element instanceof HTMLAnchorElement) {
@@ -31,9 +33,11 @@ export class LinkDirective extends AsyncDirective {
       'click',
       event => {
         event.preventDefault();
-        if (this.#link !== undefined) goto(this.#link);
+        if (this.#link !== undefined) {
+          goto(this.#link);
+        }
       },
-      { capture: true },
+      { capture: true }
     );
   }
 

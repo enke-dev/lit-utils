@@ -28,7 +28,7 @@ export interface FormAssociated<T> {
   formResetCallback?: () => void;
   formStateRestoreCallback?: (
     state: string | File | FormData | null,
-    mode: 'autocomplete' | 'restore',
+    mode: 'autocomplete' | 'restore'
   ) => void;
 }
 
@@ -98,12 +98,12 @@ export interface FormAssociated<T> {
 export function applyFromFormData<T extends object>(
   form: HTMLFormElement,
   existing = {} as T,
-  intercept: (key: string, value: FormDataEntryValue) => unknown = (_, v) => v,
+  intercept: (key: string, value: FormDataEntryValue) => unknown = (_, v) => v
 ): T | undefined {
   const data = new FormData(form);
   return Array.from(data.entries()).reduce(
     (all, [name, value]) => ({ ...all, [name]: intercept(name, value) }),
-    existing,
+    existing
   );
 }
 
@@ -195,7 +195,7 @@ export function setupFormSubmitter(ctor: FormSubmitterConstructor) {
             get: () => submitter,
           });
         },
-        { capture: true, once: true },
+        { capture: true, once: true }
       );
 
       elementInternals.setFormValue(submitter.value);

@@ -29,11 +29,15 @@ export const ListConverter: ConverterFactory<
   [string?, (StringConstructor | NumberConstructor)?]
 > = (separator = ',', type: StringConstructor | NumberConstructor = String) => ({
   fromAttribute: value => {
-    if (['', null].includes(value)) return [];
+    if (['', null].includes(value)) {
+      return [];
+    }
     return value?.split(separator).map(v => type(v)) || [];
   },
   toAttribute: (value): string | null => {
-    if (!value.length) return null;
+    if (!value.length) {
+      return null;
+    }
     return value.map(v => `${v}`).join(separator);
   },
 });

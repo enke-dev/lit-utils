@@ -12,7 +12,9 @@
 export function shortDate(date = new Date()): string | undefined {
   const offset = date.getTimezoneOffset();
   date = new Date(date.getTime() - offset * 60 * 1000);
-  if (isNaN(date.getTime())) return undefined;
+  if (isNaN(date.getTime())) {
+    return undefined;
+  }
   return date.toISOString().split('T')[0];
 }
 

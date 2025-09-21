@@ -21,7 +21,9 @@ export class RouteActiveDirective extends AsyncDirective {
   readonly #element?: Element;
 
   #matchRoute(): boolean {
-    if (this.#route === undefined) return false;
+    if (this.#route === undefined) {
+      return false;
+    }
 
     // pattern matching using a URLPattern
     const route = new URLPattern(this.#route, window.location.origin);
@@ -64,7 +66,7 @@ export class RouteActiveDirective extends AsyncDirective {
       partInfo.type !== PartType.ELEMENT
     ) {
       throw new Error(
-        'The `routerActive` directive must be used with a boolean result attribute / property, or directly on the element itself to toggle a class.',
+        'The `routerActive` directive must be used with a boolean result attribute / property, or directly on the element itself to toggle a class.'
       );
     }
 

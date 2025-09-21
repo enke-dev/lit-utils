@@ -19,7 +19,7 @@ export class Console {
       switch (match) {
         case '<code>':
           styles.push(
-            'font-family: monospace; color: #f4f4f4; background: #212121; padding: 2px 4px; border-radius: 4px;',
+            'font-family: monospace; color: #f4f4f4; background: #212121; padding: 2px 4px; border-radius: 4px;'
           );
           return '%c';
         case '</code>':

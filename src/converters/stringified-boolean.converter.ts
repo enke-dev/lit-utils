@@ -25,7 +25,7 @@ import type { ConverterFactory } from '../types/converter.types.js';
  */
 export const StringifiedBooleanConverter: ConverterFactory<boolean, [string?, string?]> = (
   trueValue = 'true',
-  falseValue = 'false',
+  falseValue = 'false'
 ) => ({
   fromAttribute: value => {
     return value === trueValue;

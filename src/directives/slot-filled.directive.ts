@@ -13,8 +13,12 @@ export class SlotFilledDirective extends AsyncDirective {
   #isListening = false;
   #listener = (event: Event) => {
     const slot = event.target as HTMLSlotElement | null;
-    if (slot === null || !(slot instanceof HTMLSlotElement)) return;
-    if (this.#slotName && slot.name !== this.#slotName) return;
+    if (slot === null || !(slot instanceof HTMLSlotElement)) {
+      return;
+    }
+    if (this.#slotName && slot.name !== this.#slotName) {
+      return;
+    }
 
     const elements = slot?.assignedElements({ flatten: true });
     const attr = this.#attr ?? 'data-has-elements';
