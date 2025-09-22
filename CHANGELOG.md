@@ -1,5 +1,7 @@
 # @enke.dev/lit-utils
 
+## [0.2.4](https://github.com/enke-dev/lit-utils/compare/0.2.3...0.2.4) (2025-09-22)
+
 ## [0.2.3](https://github.com/enke-dev/lit-utils/compare/0.2.2...0.2.3) (2025-09-21)
 
 ## [0.2.2](https://github.com/enke-dev/lit-utils/compare/0.2.1...0.2.2) (2025-08-27)
