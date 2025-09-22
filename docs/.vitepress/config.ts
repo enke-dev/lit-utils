@@ -1,3 +1,4 @@
+import mkcert from 'vite-plugin-mkcert';
 import { defineConfig } from 'vitepress';
 import { SearchPlugin } from 'vitepress-plugin-search';
 
@@ -31,6 +32,6 @@ export default defineConfig({
     ],
   },
   vite: {
-    plugins: [SearchPlugin()],
+    plugins: [mkcert(), SearchPlugin()],
   },
 });
