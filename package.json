@@ -32,7 +32,7 @@
     "urlpattern-polyfill": "^10"
   },
   "devDependencies": {
-    "@enke.dev/lint": "0.11.1",
+    "@enke.dev/lint": "0.11.2",
     "@esm-bundle/chai": "4.3.4-fix.0",
     "@open-wc/semantic-dom-diff": "0.20.1",
     "@open-wc/testing": "4.0.0",
