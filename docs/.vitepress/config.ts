@@ -2,6 +2,7 @@ import mkcert from 'vite-plugin-mkcert';
 import { defineConfig } from 'vitepress';
 import { SearchPlugin } from 'vitepress-plugin-search';
 
+import { name, version } from '../../package.json';
 import sidebarItems from '../api/typedoc-sidebar.json';
 
 // https://vitepress.dev/reference/site-config
@@ -30,6 +31,21 @@ export default defineConfig({
         link: 'https://github.com/enke-dev/lit-utils#readme',
       },
     ],
+  },
+  // `transformHtml` can not be used, as it is not picked up in the
+  // dev server, see https://github.com/vuejs/vitepress/issues/2537
+  transformPageData(pageData) {
+    // set app version to hero action on homepage
+    if ('hero' in pageData.frontmatter) {
+      pageData.frontmatter['hero'].actions.map((action: { text: string; link: string }) => {
+        if (action.text === 'View on npm') {
+          action.text = `${version} on npm`;
+          action.link = `https://www.npmjs.com/package/${name}/v/${version}`;
+        }
+        return action;
+      });
+    }
+    return pageData;
   },
   vite: {
     plugins: [mkcert(), SearchPlugin()],

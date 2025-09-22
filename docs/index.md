@@ -13,6 +13,9 @@ hero:
     - theme: alt
       text: View on GitHub
       link: https://github.com/enke-dev/lit-utils#readme
+    - theme: alt
+      text: View on npm
+      link: https://www.npmjs.com/package/@enke.dev/lit-utils/v/latest
 
 features:
   - title: Converters
