@@ -23,7 +23,12 @@ export function setSearchParamsHandling(strategy: SearchParamsHandling) {
 /**
  * Internal function to apply search parameters according to the given strategy.
  */
-export function handleSearchParams(path: string, strategy = searchParamsHandling): string {
+export function handleSearchParams(path: string | URL, strategy = searchParamsHandling): string {
+  // handle URL input
+  if (path instanceof URL) {
+    path = `${path.pathname}${path.search}${path.hash}`;
+  }
+
   // replace strategy does not need to do anything
   if (strategy === 'replace') {
     return path;
@@ -101,7 +106,7 @@ export function connectHistory(router: Routes) {
 /**
  * Conveniently navigates to a new path.
  */
-export function goto(path: string): void {
+export function goto(path: string | URL): void {
   const next = handleSearchParams(path);
   const detail = { path: next } satisfies RouterNavigateEventPayload;
   history.pushState(detail, '', next);
@@ -141,7 +146,11 @@ export function goto(path: string): void {
  * }
  * ```
  */
-export function redirect(to: string, redirectQuery?: string, redirectParam = 'redirect'): false {
+export function redirect(
+  to: string | URL,
+  redirectQuery?: string,
+  redirectParam = 'redirect'
+): false {
   // prepare a url and add redirect query if provided
   const url = new URL(handleSearchParams(to), location.origin);
   if (redirectQuery) {
