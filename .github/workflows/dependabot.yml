@@ -1,0 +1,36 @@
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  update:
+    name: Update dependencies
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' && github.actor == 'dependabot[bot]' }}
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+      - name: Cache Rust dependencies
+        uses: Swatinem/rust-cache@v2
+        with:
+          key: fnm-head-build
+      - name: Install fnm from HEAD
+        run: |
+          cargo install fnm --git
+          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+
+      - name: Run custom update script
+        run: |
+          eval "$(fnm env --use-on-cd --shell bash)"
+          ./scripts/update.sh
+      - name: Commit updated files
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "chore: update dependencies"
