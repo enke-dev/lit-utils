@@ -1,6 +1,7 @@
 {
   "extends": "@tsconfig/strictest/tsconfig.json",
   "compilerOptions": {
+    "experimentalDecorators": true,
     "module": "ESNext",
     "moduleResolution": "bundler",
     "target": "ESNext"
