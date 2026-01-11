@@ -4,6 +4,21 @@ import { AsyncDirective, directive } from 'lit/async-directive.js';
 
 import { goto } from '../utils/router.utils.js';
 
+export interface LinkDirectiveOptions {
+  /**
+   * Customizes the ARIA role set on non-anchor elements.
+   * For anchors, the role is not set. All other elements get a `role="link"` by default.
+   * If you e.g. have a custom button component, you might want to set this to `button` instead.
+   */
+  role?: string;
+
+  /**
+   * Skips preventing the default event on click and the custom event dispatching for the router.
+   * Instead, the native behavior of the element is preserved.
+   */
+  native?: boolean;
+}
+
 /**
  * @private
  */
@@ -11,6 +26,14 @@ export class LinkDirective extends AsyncDirective {
   #element: Element | undefined;
   #link: string | undefined;
   #role: string | undefined;
+  #native: boolean | undefined;
+
+  #handleClick = ((event: Event) => {
+    event.preventDefault();
+    if (this.#link !== undefined) {
+      goto(this.#link);
+    }
+  }).bind(this);
 
   // set the link to the element
   #updateLinkValue(element: Element | undefined) {
@@ -29,35 +52,32 @@ export class LinkDirective extends AsyncDirective {
     }
 
     // update the click handler
-    element?.addEventListener(
-      'click',
-      event => {
-        event.preventDefault();
-        if (this.#link !== undefined) {
-          goto(this.#link);
-        }
-      },
-      { capture: true }
-    );
+    if (this.#native) {
+      element?.removeEventListener('click', this.#handleClick, { capture: true });
+    } else {
+      element?.addEventListener('click', this.#handleClick, { capture: true });
+    }
   }
 
-  override render(_link?: string, _role?: string) {
+  override render(_link?: string, _options?: Partial<LinkDirectiveOptions>) {
     return nothing;
   }
 
-  override update(part: ElementPart, [link, role]: Parameters<this['render']>) {
+  override update(part: ElementPart, [link, options]: Parameters<this['render']>) {
     const linkChanged = link !== this.#link;
-    const roleChanged = role !== this.#role;
+    const roleChanged = options?.role !== this.#role;
+    const nativeChanged = options?.native !== this.#native;
     if (linkChanged && this.#link !== undefined) {
       // The link passed to the directive has changed;
       // unset the previous link's value
       this.#updateLinkValue(undefined);
     }
-    if (linkChanged || roleChanged || this.#element !== this.#element) {
+    if (linkChanged || roleChanged || nativeChanged || this.#element !== this.#element) {
       // We either got a new link or this is the first render;
       // store the link and element, update the link value
       this.#link = link;
-      this.#role = role;
+      this.#role = options?.role;
+      this.#native = options?.native ?? false;
       this.#element = part.element;
       this.#updateLinkValue(this.#element);
     }
