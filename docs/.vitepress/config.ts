@@ -1,6 +1,6 @@
 import mkcert from 'vite-plugin-mkcert';
 import { defineConfig } from 'vitepress';
-import { SearchPlugin } from 'vitepress-plugin-search';
+import { pagefindPlugin } from 'vitepress-plugin-pagefind';
 
 import { name, version } from '../../package.json';
 import sidebarItems from '../api/typedoc-sidebar.json';
@@ -48,6 +48,12 @@ export default defineConfig({
     return pageData;
   },
   vite: {
-    plugins: [mkcert(), SearchPlugin()],
+    plugins: [
+      mkcert(),
+      pagefindPlugin({
+        indexingCommand:
+          './node_modules/.bin/pagefind --site docs/.vitepress/dist --output-path docs/.vitepress/dist/pagefind --exclude-selectors "div.aside, a.header-anchor"',
+      }),
+    ],
   },
 });
