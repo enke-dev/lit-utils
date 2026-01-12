@@ -4,6 +4,7 @@
     "experimentalDecorators": true,
     "module": "ESNext",
     "moduleResolution": "bundler",
+    "resolveJsonModule": true,
     "target": "ESNext"
   },
   "include": ["**/*.ts", "./docs/.vitepress/config.ts"],
