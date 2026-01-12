@@ -1,5 +1,6 @@
 import type { ElementPart } from 'lit';
 import { nothing } from 'lit';
+import type { DirectiveResult } from 'lit/async-directive.js';
 import { AsyncDirective, directive } from 'lit/async-directive.js';
 
 /**
@@ -115,4 +116,16 @@ export class SlotFilledDirective extends AsyncDirective {
  * </footer>
  * ```
  */
-export const slotFilled = directive(SlotFilledDirective);
+export const slotFilled = directive(SlotFilledDirective) as (
+  /**
+   * The attribute to set on the host element when the slot has elements assigned.
+   * @default 'data-has-elements'
+   */
+  attr?: string,
+
+  /**
+   * The name of the slot to check. If not provided, all slots will be observed.
+   * To check for the default (unnamed) slot, provide an empty string.
+   */
+  slotName?: string
+) => DirectiveResult<typeof SlotFilledDirective>;

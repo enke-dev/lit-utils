@@ -1,5 +1,6 @@
 import type { ElementPart } from 'lit';
 import { nothing } from 'lit';
+import type { DirectiveResult } from 'lit/async-directive.js';
 import { AsyncDirective, directive } from 'lit/async-directive.js';
 
 import { goto } from '../utils/router.utils.js';
@@ -59,6 +60,8 @@ export class LinkDirective extends AsyncDirective {
     }
   }
 
+  // as the inferred types are not properly visible in the docs, make
+  // sure to explicitly describe the parameters at the `directive` call
   override render(_link?: string, _options?: Partial<LinkDirectiveOptions>) {
     return nothing;
   }
@@ -107,18 +110,41 @@ export class LinkDirective extends AsyncDirective {
  * It will also add a click handler to the element that will navigate to the given path, then.
  *
  * @example
+ * Link an anchor to a route path
+ *
  * ```html
  * <a ${link('/home')}>Home</a>
  * ```
  *
  * @example
+ * Link a button to a route path
+ *
  * ```html
  * <button ${link('?menu-visible=1')}>Home</button>
  * ```
  *
  * @example
+ * Link to a resource without preventing native behavior
+ *
  * ```html
- * <custom-button ${link('/login', 'button')}>Home</custom-button>
+ * <a ${link('https://example.com/login', { native: true })}>Login</a>
+ * ```
+ *
+ * @example
+ * Link a custom element to a route path with a custom role
+ *
+ * ```html
+ * <custom-button ${link('/login', { role: 'button' })}>Home</custom-button>
  * ```
  */
-export const link = directive(LinkDirective);
+export const link = directive(LinkDirective) as (
+  /**
+   * The link path to navigate to.
+   */
+  link: string,
+
+  /**
+   * Additional options for the link directive.
+   */
+  options?: Partial<LinkDirectiveOptions>
+) => DirectiveResult<typeof LinkDirective>;

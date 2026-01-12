@@ -1,4 +1,5 @@
 import { noChange } from 'lit';
+import type { DirectiveResult } from 'lit/async-directive.js';
 import {
   AsyncDirective,
   directive,
@@ -32,7 +33,8 @@ export class RouteActiveDirective extends AsyncDirective {
     return route.test(url);
   }
 
-  // looks like we're using it only to derive types?
+  // as the inferred types are not properly visible in the docs, make
+  // sure to explicitly describe the parameters at the `directive` call
   render(_route: string, _toggleClass?: string) {
     return noChange;
   }
@@ -95,4 +97,15 @@ export class RouteActiveDirective extends AsyncDirective {
  * <button href="/home" ?disabled="${routeActive('/home')}">Home</button>
  * ```
  */
-export const routeActive = directive(RouteActiveDirective);
+export const routeActive = directive(RouteActiveDirective) as (
+  /**
+   * The route path to match against the current location.
+   */
+  route: string,
+
+  /**
+   * The CSS class to toggle on the element when the route is active.
+   * @default 'active'
+   */
+  toggleClass?: string
+) => DirectiveResult<typeof RouteActiveDirective>;
