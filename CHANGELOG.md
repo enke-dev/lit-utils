@@ -1,5 +1,14 @@
 # @enke.dev/lit-utils
 
+# [0.3.0](https://github.com/enke-dev/lit-utils/compare/0.2.6...0.3.0) (2026-01-12)
+
+
+### Features
+
+* **link.directive:** pass options as object ([853364d](https://github.com/enke-dev/lit-utils/commit/853364d3d92176f24cf06563c8f651186358c0ee))
+* **router.utils:** allow URLs as paths ([5ad3df5](https://github.com/enke-dev/lit-utils/commit/5ad3df5e254af8f0f6c4f255e14f050e6b8b999a))
+* **slot-filled.directive:** allow checking default slots only ([76cf846](https://github.com/enke-dev/lit-utils/commit/76cf8464fbf1720dba1810731c4ab3b909328f38))
+
 ## [0.2.6](https://github.com/enke-dev/lit-utils/compare/0.2.5...0.2.6) (2025-09-22)
 
 ## [0.2.5](https://github.com/enke-dev/lit-utils/compare/0.2.4...0.2.5) (2025-09-22)
