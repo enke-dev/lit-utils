@@ -22,7 +22,14 @@ export default defineConfig({
       collapsed: item.text === 'utils',
       items:
         item.text !== 'utils'
-          ? item.items.flatMap(subItem => subItem.items[0]?.items ?? [])
+          ? item.text !== 'types'
+            ? item.items.flatMap(
+                subItem =>
+                  subItem.items
+                    .filter(item => item.text === 'Variables')
+                    .flatMap(item => item.items) ?? []
+              )
+            : item.items.flatMap(subItem => subItem.items[0]?.items ?? [])
           : item.items,
     })),
     socialLinks: [
