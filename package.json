@@ -54,11 +54,11 @@
     "prettier": "3.7.4",
     "ts-jest": "29.4.6",
     "ts-node": "10.9.2",
-    "typedoc": "0.28.15",
+    "typedoc": "0.28.16",
     "typedoc-plugin-markdown": "4.9.0",
     "typedoc-vitepress-theme": "1.1.2",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.52.0",
+    "typescript-eslint": "8.53.0",
     "vitepress": "1.6.4",
     "vite-plugin-mkcert": "1.17.9",
     "vitepress-plugin-pagefind": "0.4.18"
