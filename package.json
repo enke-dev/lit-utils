@@ -16,6 +16,7 @@
   "types": "lib/index.d.ts",
   "type": "module",
   "scripts": {
+    "check": "tsc -p tsconfig.build.json --noEmit",
     "lint": "eslint",
     "test": "cross-env NODE_OPTIONS=\"--experimental-vm-modules\" NODE_NO_WARNINGS=1 jest",
     "build": "tsc --project tsconfig.build.json",
@@ -33,7 +34,7 @@
   },
   "devDependencies": {
     "@awmottaz/prettier-plugin-void-html": "2.0.0",
-    "@enke.dev/lint": "0.11.19",
+    "@enke.dev/lint": "0.11.20",
     "@esm-bundle/chai": "4.3.4-fix.0",
     "@open-wc/semantic-dom-diff": "0.20.1",
     "@open-wc/testing": "4.0.0",
