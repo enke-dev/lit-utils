@@ -14,7 +14,7 @@ node -v > .node-version
 
 # Update all dependencies to latest version in all packages
 echo "> Checking for latest versions of dependencies"
-npx -y npm-check-updates -ux @types/node
+npx npm-check-updates --dep dev,optional,peer,prod,packageManager --upgrade --reject @types/node
 
 # Align node types to installed node lts version
 echo "> Aligning @types/node to installed Node LTS version"
