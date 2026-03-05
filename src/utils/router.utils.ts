@@ -70,14 +70,14 @@ export function matchRoute(
  * Connects a router instance to the history API.
  * This allows us to reliably check for active routes, or to listen to path changes.
  *
- * > [!ATTENTION]
+ * > [!NOTE]
  * > Due to an unresolved issue in the router library, as concurrent/re-entrant calls to goto() are not guarded against:
  * > "TODO (justinfagnani): do we need to detect when goto() is called while a previous goto() call is still pending?"
  * > So we need to re-sync the router after each navigation, to ensure that the router is always in sync with the actual location.
  *
  * It is usually called once the routes are registered.
  *
- * > [!WARNING]
+ * > [!IMPORTANT]
  * > Make sure to call the returned cleanup function when the router is no longer needed.
  *
  * @example
