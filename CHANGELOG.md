@@ -1,5 +1,12 @@
 # @enke.dev/lit-utils
 
+# [0.4.0](https://github.com/enke-dev/lit-utils/compare/0.3.4...0.4.0) (2026-03-05)
+
+
+### Features
+
+* **link.directive:** add option for backlinks ([ae692f6](https://github.com/enke-dev/lit-utils/commit/ae692f6c63a74a5ba8a2a0b6509e096520f67a0e))
+
 ## [0.3.4](https://github.com/enke-dev/lit-utils/compare/0.3.3...0.3.4) (2026-03-05)
 
 ## [0.3.3](https://github.com/enke-dev/lit-utils/compare/0.3.2...0.3.3) (2026-03-05)
