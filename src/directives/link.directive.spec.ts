@@ -2,7 +2,7 @@ import { expect } from '@open-wc/testing';
 import { defineCE, fixture, html } from '@open-wc/testing-helpers';
 import { LitElement } from 'lit';
 
-import { ROUTER_NAVIGATE_EVENT } from '../utils/router.utils.js';
+import { ROUTER_NAVIGATE_COMMAND } from '../utils/router.utils.js';
 import { link } from './link.directive.js';
 
 describe('LinkDirective', () => {
@@ -62,7 +62,7 @@ describe('LinkDirective', () => {
     expect(div).to.have.attribute('role', 'button');
   });
 
-  it('emits a navigation event to the link on click', async () => {
+  it('emits a navigation command to the link on click', async () => {
     // GIVEN a component with a link directive
     const tag = defineCE(
       class extends LitElement {
@@ -77,14 +77,14 @@ describe('LinkDirective', () => {
     const anchor = el.shadowRoot?.querySelector('a') as HTMLAnchorElement;
 
     let navigatedTo: string | null = null;
-    window.addEventListener(ROUTER_NAVIGATE_EVENT, (event: Event) => {
+    window.addEventListener(ROUTER_NAVIGATE_COMMAND, (event: Event) => {
       const customEvent = event as CustomEvent;
       navigatedTo = customEvent.detail.path;
     });
 
     anchor.click();
 
-    // THEN a navigation event is emitted with the correct path
+    // THEN a navigation command is emitted with the correct path
     expect(navigatedTo).to.equal('/dashboard');
   });
 
@@ -103,14 +103,14 @@ describe('LinkDirective', () => {
     const anchor = el.shadowRoot?.querySelector('a') as HTMLAnchorElement;
 
     let navigatedTo: string | null = null;
-    window.addEventListener(ROUTER_NAVIGATE_EVENT, (event: Event) => {
+    window.addEventListener(ROUTER_NAVIGATE_COMMAND, (event: Event) => {
       const customEvent = event as CustomEvent;
       navigatedTo = customEvent.detail.path;
     });
 
     anchor.click();
 
-    // THEN no navigation event is emitted and native behavior is preserved
+    // THEN no navigation command is emitted and native behavior is preserved
     expect(navigatedTo).to.be.null;
   });
 });
