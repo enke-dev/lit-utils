@@ -1,5 +1,12 @@
 # @enke.dev/lit-utils
 
+## [0.3.3](https://github.com/enke-dev/lit-utils/compare/0.3.2...0.3.3) (2026-03-05)
+
+
+### Bug Fixes
+
+* **router:** separate command and event for navigation ([c81cc49](https://github.com/enke-dev/lit-utils/commit/c81cc49142f81263bf68204521916dea6253426b))
+
 ## [0.3.2](https://github.com/enke-dev/lit-utils/compare/0.3.1...0.3.2) (2026-02-09)
 
 ## [0.3.1](https://github.com/enke-dev/lit-utils/compare/0.3.0...0.3.1) (2026-01-12)
