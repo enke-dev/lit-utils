@@ -18,6 +18,12 @@ export interface LinkDirectiveOptions {
    * Instead, the native behavior of the element is preserved.
    */
   native?: boolean;
+
+  /**
+   * Adds a backlink to the element.
+   * The given string will be used as query parameter key, with the current path as value.
+   */
+  addBacklink?: string;
 }
 
 /**
@@ -28,27 +34,50 @@ export class LinkDirective extends AsyncDirective {
   #link: string | undefined;
   #role: string | undefined;
   #native: boolean | undefined;
+  #addBacklink: string | undefined;
 
   #handleClick = ((event: Event) => {
     event.preventDefault();
     if (this.#link !== undefined) {
-      goto(this.#link);
+      goto(this.#prepareLink(this.#link));
     }
   }).bind(this);
+
+  // adds the backlink query parameter to the given path if the option is set
+  #prepareLink(link: string): string {
+    // no backlink, no problem
+    if (this.#addBacklink === undefined) {
+      return link;
+    }
+
+    // prepare a url with backlink
+    const url = new URL(link, location.origin);
+    const current = `${location.pathname}${location.search}`;
+    url.searchParams.set(this.#addBacklink, current);
+
+    // make sure the backlink doesn't point to itself, that would be awkward
+    if (url.pathname === location.pathname) {
+      return link;
+    }
+
+    // return just the path
+    return `${url.pathname}${url.search}`;
+  }
 
   // set the link to the element
   #updateLinkValue(element: Element | undefined) {
     if (this.#link === undefined) {
       return;
     }
+    const link = this.#prepareLink(this.#link);
 
     // update the href attribute if the element is an anchor
     if (element instanceof HTMLAnchorElement) {
-      element?.setAttribute('href', this.#link);
+      element?.setAttribute('href', link);
     }
     // set aria role for buttons (and all others)
     else {
-      element?.setAttribute('data-href', this.#link);
+      element?.setAttribute('data-href', link);
       element?.setAttribute('role', this.#role ?? 'link');
     }
 
@@ -81,6 +110,7 @@ export class LinkDirective extends AsyncDirective {
       this.#link = link;
       this.#role = options?.role;
       this.#native = options?.native ?? false;
+      this.#addBacklink = options?.addBacklink;
       this.#element = part.element;
       this.#updateLinkValue(this.#element);
     }
@@ -135,6 +165,14 @@ export class LinkDirective extends AsyncDirective {
  *
  * ```html
  * <custom-button ${link('/login', { role: 'button' })}>Home</custom-button>
+ * ```
+ *
+ * @example
+ * Link to a route path with a backlink to the current page
+ *
+ * ```html
+ * <a ${link('/login', { addBacklink: 'back' })}>Login</a>
+ * <!-- Navigating to /login will result in the URL /login?back=/current/path -->
  * ```
  */
 export const link = directive(LinkDirective) as (
