@@ -126,8 +126,7 @@ export interface FormSubmitter extends ReactiveElement {
  * @private
  */
 export type FormSubmitterConstructor =
-  | (new () => FormSubmitter)
-  | (abstract new () => FormSubmitter);
+  (new () => FormSubmitter) | (abstract new () => FormSubmitter);
 
 /**
  * Sets up a form submitter to handle form submission events.
