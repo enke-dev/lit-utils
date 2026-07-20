@@ -1,5 +1,12 @@
 # @enke.dev/lit-utils
 
+## [0.4.5](https://github.com/enke-dev/lit-utils/compare/0.4.3...0.4.5) (2026-07-20)
+
+
+### Bug Fixes
+
+* **ci:** check out the branch in the release job so release commits land on main ([4b72d46](https://github.com/enke-dev/lit-utils/commit/4b72d4629c58f260fddc5b44397b3fa1c09bac55))
+
 ## [0.4.3](https://github.com/enke-dev/lit-utils/compare/0.4.2...0.4.3) (2026-07-18)
 
 ## [0.4.2](https://github.com/enke-dev/lit-utils/compare/0.4.1...0.4.2) (2026-03-12)
