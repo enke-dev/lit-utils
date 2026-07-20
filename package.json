@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@awmottaz/prettier-plugin-void-html": "2.1.0",
-    "@enke.dev/lint": "0.13.2",
+    "@enke.dev/lint": "0.13.3",
     "@esm-bundle/chai": "4.3.4-fix.0",
     "@open-wc/semantic-dom-diff": "0.21.0",
     "@open-wc/testing": "5.0.0",
