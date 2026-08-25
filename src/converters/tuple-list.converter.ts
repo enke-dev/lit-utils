@@ -27,11 +27,11 @@ import type { ConverterFactory } from '../types/converter.types.js';
  */
 export const TupleListConverter: ConverterFactory<
   (string | number | undefined)[][],
-  [string?, string?, (StringConstructor | NumberConstructor)[]?]
+  [string?, string?, ((value: string) => string | number)[]?]
 > = (
   listSeparator = ',',
   tupleSeparator = ' ',
-  types: (StringConstructor | NumberConstructor)[] = [Number, Number]
+  types: ((value: string) => string | number)[] = [Number, Number]
 ) => ({
   fromAttribute: value => {
     if (['', null].includes(value)) {

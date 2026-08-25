@@ -26,8 +26,8 @@ import type { ConverterFactory } from '../types/converter.types.js';
  */
 export const ListConverter: ConverterFactory<
   (string | number)[],
-  [string?, (StringConstructor | NumberConstructor)?]
-> = (separator = ',', type: StringConstructor | NumberConstructor = String) => ({
+  [string?, ((value: string) => string | number)?]
+> = (separator = ',', type: (value: string) => string | number = String) => ({
   fromAttribute: value => {
     if (['', null].includes(value)) {
       return [];
