@@ -25,7 +25,7 @@ import type { ConverterFactory } from '../types/converter.types.js';
  * ```
  */
 export const ListConverter: ConverterFactory<
-  ReturnType<StringConstructor | NumberConstructor>[],
+  (string | number)[],
   [string?, (StringConstructor | NumberConstructor)?]
 > = (separator = ',', type: StringConstructor | NumberConstructor = String) => ({
   fromAttribute: value => {
