@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress';
 import { pagefindPlugin } from 'vitepress-plugin-pagefind';
 
 import { name, version } from '../../package.json';
-import sidebarItems from '../api/typedoc-sidebar.json.js';
+import sidebarItems from '../api/typedoc-sidebar.json' with { type: 'json' };
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
