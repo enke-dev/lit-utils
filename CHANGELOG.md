@@ -1,5 +1,11 @@
 # @enke.dev/lit-utils
 
+# [0.5.0](https://github.com/enke-dev/lit-utils/compare/0.4.7...0.5.0) (2026-08-25)
+
+### Features
+
+* add tuple list converter ([49a5bb9](https://github.com/enke-dev/lit-utils/commit/49a5bb974cf616cdde6fc224951a791b516f1965))
+
 ## [0.4.7](https://github.com/enke-dev/lit-utils/compare/0.4.6...0.4.7) (2026-08-17)
 
 ## [0.4.6](https://github.com/enke-dev/lit-utils/compare/0.4.5...0.4.6) (2026-07-20)
