@@ -1,5 +1,11 @@
 # @enke.dev/lit-utils
 
+## [0.5.2](https://github.com/enke-dev/lit-utils/compare/0.5.1...0.5.2) (2026-08-25)
+
+### Bug Fixes
+
+* **converter:** type coersion / converter types widened ([2f25630](https://github.com/enke-dev/lit-utils/commit/2f25630c688443059649597bb1034aefa93f700d))
+
 ## [0.5.1](https://github.com/enke-dev/lit-utils/compare/0.5.0...0.5.1) (2026-08-25)
 
 ### Bug Fixes
