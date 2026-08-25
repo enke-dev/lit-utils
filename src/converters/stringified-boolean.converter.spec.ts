@@ -1,3 +1,4 @@
+import { describe, it } from '@jest/globals';
 import { expect } from '@open-wc/testing';
 
 import { StringifiedBooleanConverter } from './stringified-boolean.converter.js';

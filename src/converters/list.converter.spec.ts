@@ -1,3 +1,4 @@
+import { describe, it } from '@jest/globals';
 import { expect } from '@open-wc/testing';
 
 import { ListConverter } from './list.converter.js';

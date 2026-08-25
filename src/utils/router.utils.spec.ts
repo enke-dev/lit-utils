@@ -1,3 +1,4 @@
+import { describe, it } from '@jest/globals';
 import type { Routes } from '@lit-labs/router';
 import { expect, nextFrame } from '@open-wc/testing';
 import sinon from 'sinon';

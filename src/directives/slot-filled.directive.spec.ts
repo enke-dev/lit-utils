@@ -1,3 +1,4 @@
+import { describe, it } from '@jest/globals';
 import { defineCE, expect, fixture, html } from '@open-wc/testing';
 import { LitElement } from 'lit';
 
