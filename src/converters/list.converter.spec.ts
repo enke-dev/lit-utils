@@ -57,6 +57,8 @@ describe('ListConverter', () => {
   });
 
   it('delivers null for empty lists', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    expect(ListConverter(',', Number).toAttribute(undefined as any)).to.be.null;
     expect(ListConverter(',', String).toAttribute([])).to.be.null;
     expect(ListConverter(',', Number).toAttribute([])).to.be.null;
   });

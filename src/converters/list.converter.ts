@@ -35,7 +35,7 @@ export const ListConverter: ConverterFactory<
     return value?.split(separator).map(v => type(v)) || [];
   },
   toAttribute: (value): string | null => {
-    if (!value.length) {
+    if (!value?.length) {
       return null;
     }
     return value.map(v => `${v}`).join(separator);

@@ -67,6 +67,8 @@ describe('TupleListConverter', () => {
   });
 
   it('delivers null for empty lists', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    expect(TupleListConverter(',', ' ', [Number]).toAttribute(undefined as any)).to.be.null;
     expect(TupleListConverter(',', ' ', [String]).toAttribute([])).to.be.null;
     expect(TupleListConverter(',', ' ', [Number]).toAttribute([])).to.be.null;
   });

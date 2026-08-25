@@ -44,7 +44,7 @@ export const TupleListConverter: ConverterFactory<
     );
   },
   toAttribute: (value): string | null => {
-    if (!value.length) {
+    if (!value?.length) {
       return null;
     }
     return value.map(v => v.join(tupleSeparator)).join(listSeparator);
