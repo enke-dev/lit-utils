@@ -1,5 +1,11 @@
 # @enke.dev/lit-utils
 
+## [0.5.1](https://github.com/enke-dev/lit-utils/compare/0.5.0...0.5.1) (2026-08-25)
+
+### Bug Fixes
+
+* **list converters:** handle undefined properties ([dcae54a](https://github.com/enke-dev/lit-utils/commit/dcae54a54a8ddabb85c09424da5097a4e6a92a72))
+
 # [0.5.0](https://github.com/enke-dev/lit-utils/compare/0.4.7...0.5.0) (2026-08-25)
 
 ### Features
