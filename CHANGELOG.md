@@ -1,5 +1,11 @@
 # @enke.dev/lit-utils
 
+# [0.6.0](https://github.com/enke-dev/lit-utils/compare/0.5.4...0.6.0) (2026-09-17)
+
+### Features
+
+* add event listener decorators ([b725169](https://github.com/enke-dev/lit-utils/commit/b72516998b13525b8e80e57e34c5b77bb14bab23))
+
 ## [0.5.4](https://github.com/enke-dev/lit-utils/compare/0.5.3...0.5.4) (2026-09-14)
 
 ## [0.5.3](https://github.com/enke-dev/lit-utils/compare/0.5.2...0.5.3) (2026-09-01)
