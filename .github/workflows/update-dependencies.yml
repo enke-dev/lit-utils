@@ -16,7 +16,7 @@ jobs:
       branch: ${{ steps.bump.outputs.branch }}
     steps:
       - id: bump
-        uses: enke-dev/bumper@41b0e87e08282f12b39ee8d235fc4853932f39c0 # 0.13.4
+        uses: enke-dev/bumper@9d009eb3fd498bf8784cf2913bb1097e5250d792 # 0.15.0
         with:
           skip: github-actions # GITHUB_TOKEN can't push .github/workflows/ changes
           pr-labels: dependencies
