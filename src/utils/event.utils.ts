@@ -46,13 +46,18 @@ function listen(
  * Decorator factory for listeners on targets the typed decorators do not cover:
  * a custom event on `window`, a media query list, an element found at runtime.
  *
+ * Pass a function for targets that only exist in a browser, like `window` or `document`: it is
+ * called when the element connects, so a module using the decorator can still be imported
+ * where there is no such global, e.g. while server-side rendering. A target passed as is
+ * has to exist when the class is defined.
+ *
  * @param to the target to listen on, or a function receiving the element
  * @param name the event name
  * @param options optional event listener options
  *
  * @example
  * ```ts
- * const listenColorSchemeChange = () => listenOn(window, 'app-color-scheme:change');
+ * const listenColorSchemeChange = () => listenOn(() => window, 'app-color-scheme:change');
  *
  * class MyComponent extends LitElement {
  *   ⁠@listenColorSchemeChange()
@@ -111,7 +116,7 @@ export function listenDocument(
   name: keyof DocumentEventMap,
   options?: AddEventListenerOptions
 ): MethodDecorator {
-  return listenOn(document, name, options);
+  return listenOn(() => document, name, options);
 }
 
 /**
@@ -133,5 +138,5 @@ export function listenWindow(
   name: keyof WindowEventMap,
   options?: AddEventListenerOptions
 ): MethodDecorator {
-  return listenOn(window, name, options);
+  return listenOn(() => window, name, options);
 }
