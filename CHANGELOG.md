@@ -1,5 +1,7 @@
 # @enke.dev/lit-utils
 
+## [0.6.3](https://github.com/enke-dev/lit-utils/compare/0.6.2...0.6.3) (2026-10-27)
+
 ## [0.6.2](https://github.com/enke-dev/lit-utils/compare/0.6.1...0.6.2) (2026-10-09)
 
 ### Bug Fixes
