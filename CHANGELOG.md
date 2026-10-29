@@ -1,5 +1,11 @@
 # @enke.dev/lit-utils
 
+# [0.7.0](https://github.com/enke-dev/lit-utils/compare/0.6.3...0.7.0) (2026-10-29)
+
+### Features
+
+* **utils:** add plural helper based on Intl.PluralRules ([24d436c](https://github.com/enke-dev/lit-utils/commit/24d436c7e8f80f51d1152b8eaca22ca93fd99c7e))
+
 ## [0.6.3](https://github.com/enke-dev/lit-utils/compare/0.6.2...0.6.3) (2026-10-27)
 
 ## [0.6.2](https://github.com/enke-dev/lit-utils/compare/0.6.1...0.6.2) (2026-10-09)
