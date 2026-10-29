@@ -28,7 +28,7 @@ Some useful types that are either used internally or moved from project to proje
 
 ## Utils
 
-Helpers for various occasions, like working with dates, form association, logging, or the `@lit-labs/router` package.
+Helpers for various occasions, like working with dates, plural forms, form association, logging, or the `@lit-labs/router` package.
 
 #### Updating dependencies
 
