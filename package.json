@@ -35,25 +35,25 @@
   },
   "devDependencies": {
     "@awmottaz/prettier-plugin-void-html": "2.3.0",
-    "@enke.dev/lint": "0.13.19",
+    "@enke.dev/lint": "0.13.22",
     "@esm-bundle/chai": "4.3.4-fix.0",
     "@open-wc/semantic-dom-diff": "0.21.0",
     "@open-wc/testing": "5.0.0",
     "@open-wc/testing-helpers": "3.0.1",
-    "@tsconfig/strictest": "2.0.8",
+    "@tsconfig/strictest": "2.0.9",
     "@types/mocha": "10.0.10",
-    "@types/node": "24.19.2",
+    "@types/node": "26.6.6",
     "cross-env": "10.1.0",
-    "eslint": "10.13.0",
+    "eslint": "10.15.0",
     "eslint-formatter-junit": "9.0.1",
     "jest": "30.5.2",
     "jest-environment-jsdom": "30.5.2",
     "jest-junit": "17.0.0",
     "jiti": "2.7.0",
     "npm-run-all": "4.1.5",
-    "pagefind": "1.5.2",
-    "playwright-chromium": "1.64.1",
-    "prettier": "3.9.10",
+    "pagefind": "1.6.0",
+    "playwright-chromium": "1.65.1",
+    "prettier": "3.10.1",
     "sinon": "22.1.0",
     "ts-jest": "29.4.15",
     "ts-node": "10.9.2",
@@ -61,10 +61,10 @@
     "typedoc-plugin-markdown": "4.14.1",
     "typedoc-vitepress-theme": "1.1.4",
     "typescript": "6.0.3",
-    "typescript-eslint": "8.72.1",
+    "typescript-eslint": "8.72.2",
     "vite-plugin-mkcert": "2.1.0",
     "vitepress": "2.0.0-alpha.18",
-    "vitepress-plugin-pagefind": "0.4.25"
+    "vitepress-plugin-pagefind": "0.4.27"
   },
   "overrides": {
     "eslint": "$eslint",
@@ -83,6 +83,6 @@
     "fsevents@2.3.3": true,
     "unrs-resolver@1.12.2": true,
     "@parcel/watcher@2.6.0": true,
-    "playwright-chromium@1.64.1": true
+    "playwright-chromium@1.65.1": true
   }
 }
