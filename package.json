@@ -42,7 +42,7 @@
     "@open-wc/testing-helpers": "3.0.1",
     "@tsconfig/strictest": "2.0.9",
     "@types/mocha": "10.0.10",
-    "@types/node": "26.6.6",
+    "@types/node": "26.6.7",
     "cross-env": "10.1.0",
     "eslint": "10.15.0",
     "eslint-formatter-junit": "9.0.1",
@@ -61,7 +61,7 @@
     "typedoc-plugin-markdown": "4.14.1",
     "typedoc-vitepress-theme": "1.1.4",
     "typescript": "6.0.3",
-    "typescript-eslint": "8.72.2",
+    "typescript-eslint": "8.74.0",
     "vite-plugin-mkcert": "2.1.0",
     "vitepress": "2.0.0-alpha.18",
     "vitepress-plugin-pagefind": "0.4.27"
